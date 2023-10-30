@@ -1,0 +1,109 @@
+{% extends 'Admin/base.html'%}
+{% load static %}
+{% block content %}
+
+{% if message %}
+<script>
+alert("{{ message }}")
+</script>
+{% endif %}
+
+<section class="pcoded-main-container">
+    <div class="pcoded-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Form Elements</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="#!">Medicines</a></li>
+                            <li class="breadcrumb-item"><a href="#!">Add Medicines</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+        <!-- [ Main Content ] start -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+
+<h3 class="mt-5">Add Medicines</h3>
+<hr>
+<form action="" method="POST"  enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="medi_name">Medicine Name</label>
+            <input type="text" class="form-control" id="medi_name" name="medi_name" placeholder="Medicine Name">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="medi_price">Medicine Price</label>
+            <input type="text" class="form-control" id="medi_price" name="medi_price" placeholder="Price">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputAddress">Medicine Image</label>
+        <input type="file" class="form-control" id="medi_image" name="medi_image" placeholder="Medicine Image">
+    </div>
+    <div class="form-group">
+        <label for="Description">Description</label>
+        <input type="text" class="form-control" id="medi_desc" name="medi_desc" placeholder="Description">
+    </div>
+    <div class="form-group">
+        <label for="Direction For Use">Direction For Use</label>
+        <input type="text" class="form-control" id="medi_dir" name="medi_dir" placeholder="Direction For Use">
+    </div>
+    <div class="form-group">
+        <label for="Warnings">Warnings</label>
+        <input type="text" class="form-control" id="medi_war" name="medi_war" placeholder="Warnings">
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="Side Effects">Side Effects</label>
+            <input type="text" class="form-control" id="medi_side" name="medi_side" placeholder="Side Effects">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="Consume Type">Consume Type</label>
+            <select id="medi_type" name="medi_type" class="form-control">
+                <option selected>Select the Type</option>
+                {% for i in cate %}
+                
+                <option value="{{i.id}}">{{i.category_name}} </option>
+            {% endfor %}
+                <!-- <option>Liquid</option>
+                <option>Tablet</option>
+                <option>Capsules</option>
+                <option>Topical </option>
+                <option>Suppositories</option>
+                <option>Drops</option>
+                <option>Inhalers</option>
+                <option>Injections</option> -->
+            </select>
+        </div>
+        <div class="form-group col-md-2">
+            <label for="Total Quantity">Total Quantity</label>
+            <input type="text" class="form-control" id="qty" name="qty">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="gridCheck">
+            <label class="form-check-label" for="gridCheck">Check me out</label>
+        </div>
+    </div>
+    <button type="submit" class="btn  btn-primary">Submit</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+{% endblock %}

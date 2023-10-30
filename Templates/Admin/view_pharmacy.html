@@ -1,0 +1,83 @@
+{% extends 'Admin/base.html'%}
+{% load static %}
+{% block content %}
+
+{% if message %}
+<script>
+alert("{{ message }}")
+</script>
+{% endif %}
+	
+
+<!-- [ Main Content ] start -->
+<section class="pcoded-main-container">
+    <div class="pcoded-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Bootstrap Basic Tables</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="#!">Pharmacy</a></li>
+                            <li class="breadcrumb-item"><a href="#!">View Pharmacy</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+        <!-- [ Contextual-table ] start -->
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Pharmacy Lists</h5>
+                    <!-- <span class="d-block m-t-5">For Make row Contextual add Contextual class like <code>.table-success</code> in <code> tr tag</code> and For cell add Contextual class in <code> td or th tag</code> .</span> -->
+                </div>
+                <div class="card-body table-border-style">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Pharmacy Name</th>
+                                    <th>Image</th>
+                                    <th>Location</th>
+                                    <th>Phone</th>
+                                    <th>Remove</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in view_pharmacy %}
+                                <tr class="table-success">
+                                    <td>{{i.pharma_name}}</td>
+                                    <td><img style="height: 70px; width: 80px;" src="/media/{{i.pharma_image}}"></td>
+                                    <td>{{i.pharma_location}}</td>
+                                    <td>{{i.pharma_phone}}</td>
+                                    <td><a href="rejectshop?id={{i.id}}"><button>Remove</button></a></td>
+
+                                </tr>
+                                {% endfor %}
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ Contextual-table ] end -->
+        </div>
+        </section>
+          <!-- Required Js -->
+    <script src="{% static 'assets/js/vendor-all.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/pcoded.min.js' %}"></script>
+
+
+
+</body>
+</html>
+{% endblock %}
+

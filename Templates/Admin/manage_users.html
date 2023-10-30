@@ -1,0 +1,78 @@
+{% extends 'Admin/base.html'%}
+{% load static %}
+{% block content %}
+
+{% if message %}
+<script>
+alert("{{ message }}")
+</script>
+{% endif %}
+
+<!-- [ Main Content ] start -->
+<section class="pcoded-main-container">
+    <div class="pcoded-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Bootstrap Basic Tables</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="#!">Manage</a></li>
+                            <li class="breadcrumb-item"><a href="#!">User</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+        <!-- [ Main Content ] start -->
+        <div class="row">
+            <!-- [ basic-table ] start -->
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>User Managing Section</h4>
+                        <!-- <span class="d-block m-t-5">use class <code>table</code> inside table element</span> -->
+                    </div>
+                    <div class="card-body table-border-style">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Phone Number</th>
+                                        <th>Order Details</th>
+                                        <th>Quantity Of Order</th>
+                                        <th>Payment status</th>
+                                        <th>Approve/Reject the User</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for i in cart %}
+                                    <tr>
+                                        <td>{{i.public_user.name}}</td>
+                                        <td>{{i.public_user.email}}</td>
+                                        <td>{{i.public_user.phone}}</td>
+                                        <td>{{i.med_name}}</td>
+                                        <td>{{i.quantity}}</td>
+                                        <td>{{i.payment}}</td>
+                                        <td><a href="ApproveUser?id={{i.id}}"><button class=" btn btn-success">✓</button></a>
+
+                                        <a href="Rejectuser?id={{i.id}}"><button class=" btn btn-danger">X</button></a></td>
+                                        <!-- <td></td> -->
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ basic-table ] end -->
+    
+            {% endblock %} 

@@ -1,0 +1,75 @@
+{% extends "pharmacy/base.html" %}
+{% load static %}
+{% block content %}
+{% if message %}
+<script>
+alert("{{ message }}")
+</script>
+{% endif %}
+
+    <div class="bg-light py-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mb-0">
+            <a href="/user">Home</a> <span class="mx-2 mb-0">/</span> 
+            <strong class="text-black">Cart</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+     <!-- [ Contextual-table ] start -->
+     <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5>Order Lists</h5>
+                <!-- <span class="d-block m-t-5">For Make row Contextual add Contextual class like <code>.table-success</code> in <code> tr tag</code> and For cell add Contextual class in <code> td or th tag</code> .</span> -->
+            </div>
+            <div class="card-body table-border-style">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th style="color: black;">Product</th>
+                                <th style="color: black;">Product</th>
+                                <th style="color: black;">Buyer's Name</th>
+                                <!-- <th>Medicine Name</th> -->
+                                <th style="color: black;">Required Quantity</th>
+                                <th style="color: black;">Total Price</th>
+                                <th style="color: black;">Delivery Address</th>
+                                <th style="color: black;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in asign %} 
+                            <tr >
+                                <td><img style="max-width: 200px;max-height:140px;" src="{{ i.medicine.med_image.url}}"><br><h2>{{i.medicine.med_name}}</h2></td>
+                                <td style="color: black;">{{i.customer.name}}</td>
+                                <!-- <td>{{i.med_name}}</td> -->
+                                <td style="color: black;">{{i.quantity}}</td>
+                                <td style="color: black;">{{i.price}}</td>
+                                <td style="color: black;">{{i.customer.address}}</td>
+                                <form action="" method="post">
+                                    {% csrf_token %}
+                                <td>
+                                    <select name="status">
+                                        <option selected="Order Status">Order Status</option>
+                                        <option value="Accepted">Accepted</option>
+                                        <option value="Rejected">Rejected</option>
+                                        <input type="hidden" name="id" value="{{i.id}}"><button type="submit">Submit</button>
+                                    </select>
+                                </td>
+                                </form>
+                                
+                                
+                            </tr>
+                            {% endfor %}
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- [ Contextual-table ] end -->
+    
+{% endblock %}
