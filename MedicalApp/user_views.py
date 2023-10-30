@@ -164,3 +164,6 @@ class chpayment(TemplateView):
             i.status = 'paid'
             i.save()
         return render(request,'User/thanks.html',{'message':" payment Success"})
+
+def demo(request):
+    return render(request, 'index.html')
